@@ -1,0 +1,54 @@
+---
+const components = [
+  {
+    title: 'Streaming Price Feeds',
+    description:
+      'Real-time price updates for any instrument. Multiple timeframes, extended hours included. All data stored and cached locally.',
+  },
+  {
+    title: 'Broker Gateway',
+    description:
+      'Bring your own broker — equities, options, futures, forex. Your capital stays in your name. Positions and orders sync in real-time.',
+  },
+  {
+    title: 'Signal Engine',
+    description:
+      'Technical indicators and market signals pre-computed continuously across your entire universe. Vectorised computation, instant access.',
+  },
+  {
+    title: 'Risk Engine',
+    description:
+      'Kill switches and position controls that activate when conditions are met. System-level enforcement — overrides strategies when thresholds breach.',
+  },
+  {
+    title: 'Trading Agents',
+    description:
+      'Run autonomous agents as Python scripts. Own capital allocation, risk rules, and independent performance tracking. Intervene at any point.',
+  },
+  {
+    title: 'Smart Triggers',
+    description:
+      'Plan positions with conditional triggers. Chain across entry, add, reduce, and exit. Orders submit only when conditions are met.',
+  },
+];
+---
+
+<section id="architecture" class="px-6 py-24">
+  <div class="mx-auto max-w-6xl">
+    <h2 class="text-center text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
+      What's behind the glass
+    </h2>
+    <p class="mx-auto mt-4 max-w-2xl text-center text-text-secondary">
+      End-to-end orchestration, from signal to close. A persistent automation and data layer that you own entirely.
+    </p>
+
+    <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {components.map((component) => (
+        <div class="rounded-xl border border-border bg-bg-card p-6 transition-colors hover:border-text-muted">
+          <h3 class="text-lg font-semibold text-text-primary">{component.title}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-text-secondary">{component.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

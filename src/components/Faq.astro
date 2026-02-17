@@ -1,0 +1,53 @@
+---
+const faqs = [
+  {
+    question: 'Why run locally instead of in the cloud?',
+    answer:
+      'Your positions, your signals, your execution logic, your API keys — none of it leaves your machine. No shared infrastructure. Glasshouse doesn\'t run a public-facing server. The decision loop stays tight — no round trip to a cloud server. Data in, logic runs, order out.',
+  },
+  {
+    question: 'Can I use it alongside my existing tools?',
+    answer:
+      'Glasshouse doesn\'t replace your stack — it sits alongside, or underneath it. Start with the price feeds and broker gateway. Your charting tools and research platforms all stay in place. Local APIs let any existing scripts, dashboards, or notebooks plug in directly.',
+  },
+  {
+    question: 'Do I need to know Python to develop a trader agent?',
+    answer:
+      'It helps, but it\'s no longer a barrier. With coding assistants widely available, you can describe your workflow in plain language and get a working agent drafted from a few examples. For tactical trade plans using smart triggers, no code is needed at all.',
+  },
+  {
+    question: 'Aren\'t there already platforms that do this?',
+    answer:
+      'None of them combine local-first infrastructure, real-time orchestration, risk enforcement, and the ability to run both autonomous agents and discretionary positions from one system. Glasshouse is designed to grow with you — start with smart triggers and move into fully automated agents as your confidence develops.',
+  },
+];
+---
+
+<section id="faq" class="px-6 py-24">
+  <div class="mx-auto max-w-3xl">
+    <h2 class="text-center text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
+      Frequently Asked Questions
+    </h2>
+
+    <div class="mt-12 space-y-4">
+      {faqs.map((faq) => (
+        <details class="group rounded-xl border border-border bg-bg-card">
+          <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-text-primary [&::-webkit-details-marker]:hidden">
+            <span class="font-medium">{faq.question}</span>
+            <svg
+              class="h-5 w-5 shrink-0 text-text-muted transition-transform group-open:rotate-45"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+          </summary>
+          <div class="px-6 pb-4">
+            <p class="text-sm leading-relaxed text-text-secondary">{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

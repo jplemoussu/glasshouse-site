@@ -1,0 +1,82 @@
+---
+interface Feature {
+  title: string;
+  description: string;
+  media?: {
+    type: 'image' | 'video';
+    src: string;
+    alt?: string;
+  };
+}
+
+const features: Feature[] = [
+  {
+    title: 'Smart Triggers',
+    description:
+      'Set a primary condition — cross, touch, or break of a level or indicator — then layer validation filters using natural syntax. Group triggers into setups, assign priority, and define one-cancels-other conditions.',
+  },
+  {
+    title: 'Execution Presets',
+    description:
+      'Auto limit orders with configurable expiration, time-of-day windows, and auto-convert to market if unfilled. Limits adjust automatically based on slippage tolerance.',
+  },
+  {
+    title: 'Position Sizing',
+    description:
+      'Scale into positions using pyramid or volatility-targeting presets. Specify your desired allocation and the platform calculates optimal size based on price, volatility, and available capital.',
+  },
+  {
+    title: 'Risk Controls',
+    description:
+      'Hidden max stops held locally, never placed at the broker. Global portfolio limits on single-position exposure, session velocity controls, and automatic resets pre trading session.',
+  },
+  {
+    title: 'Trading Agents Dashboard',
+    description:
+      'Run a diversified desk of agents side by side. Monitor performance independently, compare against benchmarks, and adjust allocation as confidence builds.',
+  },
+];
+---
+
+<section id="features" class="px-6 py-24">
+  <div class="mx-auto max-w-6xl">
+    <h2 class="text-center text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
+      What it does
+    </h2>
+    <p class="mx-auto mt-4 max-w-2xl text-center text-text-secondary">
+      From signal to close — scan, analyse, size, execute, monitor, and exit.
+    </p>
+
+    <div class="mt-16 grid gap-12 md:grid-cols-2">
+      {features.map((feature) => (
+        <div class="flex flex-col gap-4">
+          {feature.media && (
+            <div class="overflow-hidden rounded-lg border border-border bg-bg-elevated">
+              {feature.media.type === 'image' ? (
+                <img
+                  src={feature.media.src}
+                  alt={feature.media.alt || feature.title}
+                  class="w-full"
+                  loading="lazy"
+                />
+              ) : (
+                <video
+                  src={feature.media.src}
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  class="w-full"
+                />
+              )}
+            </div>
+          )}
+          <div>
+            <h3 class="text-lg font-semibold text-text-primary">{feature.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-text-secondary">{feature.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

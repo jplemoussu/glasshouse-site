@@ -1,0 +1,21 @@
+---
+const providers = [
+  'Interactive Brokers',
+  'Polygon.io',
+  'Yahoo Finance',
+  'TradingView',
+];
+---
+
+<section class="px-6 py-24">
+  <div class="mx-auto max-w-6xl">
+    <h2 class="text-center text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
+      Data & Broker Integrations
+    </h2>
+    <div class="mt-12 flex flex-wrap items-center justify-center gap-8">
+      {providers.map((provider) => (
+        <span class="text-lg font-medium text-text-muted">{provider}</span>
+      ))}
+    </div>
+  </div>
+</section>
