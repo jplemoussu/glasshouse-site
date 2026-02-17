@@ -1,26 +1,57 @@
 ---
+const base = import.meta.env.BASE_URL;
+
 const technologies = [
-  'Python',
-  'asyncio',
-  'pandas',
-  'NumPy',
-  'SQLite',
-  'WebSocket',
-  'REST API',
-  'MCP',
+  {
+    name: 'Tiger Data',
+    description: 'Aggregates streamed price data across multiple timeframes into local PostgreSQL. Previously TimescaleDB.',
+    logo: `${base}/logos/tigerdata.svg`,
+  },
+  {
+    name: 'PostgreSQL',
+    description: 'Production-grade relational database, runs entirely local. Stores trade history, platform state, and signal data.',
+    logo: `${base}/logos/postgresql.svg`,
+  },
+  {
+    name: 'Celery',
+    description: 'Schedules universe refreshes, signal computation, and background housekeeping tasks.',
+    logo: `${base}/logos/celery.svg`,
+  },
+  {
+    name: 'FastAPI',
+    description: 'REST interface layer for the UI, trading agents, and all external clients.',
+    logo: `${base}/logos/fastapi.svg`,
+  },
+  {
+    name: 'Redis',
+    description: 'Caches repeated queries and runs the FIFO message queue for order routing — the critical path.',
+    logo: `${base}/logos/redis.svg`,
+  },
+  {
+    name: 'TradingView',
+    description: 'Best charts in the business. Lightweight Charts for displaying trade history and triggers on live price data.',
+    logo: `${base}/logos/tradingview.svg`,
+  },
 ];
 ---
 
 <section id="tech-stack" class="px-6 py-24">
   <div class="mx-auto max-w-6xl">
     <h2 class="text-center text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
-      Built with
+      Built on
     </h2>
     <div class="mt-12 flex flex-wrap items-center justify-center gap-3">
       {technologies.map((tech) => (
-        <span class="rounded-full border border-border bg-bg-card px-4 py-2 text-sm text-text-secondary">
-          {tech}
-        </span>
+        <div class="group relative">
+          <span class="flex items-center gap-2.5 rounded-full border border-border bg-bg-card px-5 py-2.5 text-sm text-text-secondary transition-colors hover:border-text-muted hover:text-text-primary">
+            <img src={tech.logo} alt="" class="h-5 w-5" loading="lazy" />
+            {tech.name}
+          </span>
+          <div class="pointer-events-none absolute bottom-full left-1/2 z-10 mb-3 w-64 -translate-x-1/2 rounded-lg border border-border bg-bg-card px-4 py-3 text-sm leading-relaxed text-text-secondary opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
+            {tech.description}
+            <div class="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-border"></div>
+          </div>
+        </div>
       ))}
     </div>
   </div>

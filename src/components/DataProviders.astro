@@ -1,9 +1,11 @@
 ---
+const base = import.meta.env.BASE_URL;
+
 const providers = [
-  'Interactive Brokers',
-  'Polygon.io',
-  'Yahoo Finance',
-  'TradingView',
+  { name: 'Interactive Brokers', logo: '' },
+  { name: 'Massive', logo: '' },
+  { name: 'Financial Modeling Prep', logo: '' },
+  { name: 'SEC Filings', logo: '' },
 ];
 ---
 
@@ -12,9 +14,14 @@ const providers = [
     <h2 class="text-center text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
       Data & Broker Integrations
     </h2>
-    <div class="mt-12 flex flex-wrap items-center justify-center gap-8">
+    <div class="mt-12 flex flex-wrap items-center justify-center gap-3">
       {providers.map((provider) => (
-        <span class="text-lg font-medium text-text-muted">{provider}</span>
+        <span class="flex items-center gap-2.5 rounded-full border border-border bg-bg-card px-5 py-2.5 text-sm text-text-secondary">
+          {provider.logo && (
+            <img src={provider.logo} alt="" class="h-5 w-5" loading="lazy" />
+          )}
+          {provider.name}
+        </span>
       ))}
     </div>
   </div>

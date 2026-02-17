@@ -8,10 +8,10 @@
   --color-text-primary: #e8e6df;
   --color-text-secondary: #c2bfb2;
   --color-text-muted: #6b6960;
-  --color-accent: #945c34;
-  --color-accent-hover: #844f2a;
-  --color-secondary: #c4d4e4;
-  --color-secondary-hover: #b4c4d4;
+  --color-accent: #c4d4e4;
+  --color-accent-hover: #b4c4d4;
+  --color-secondary: #945c34;
+  --color-secondary-hover: #844f2a;
   --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
 }
 

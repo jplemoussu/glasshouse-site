@@ -1,9 +1,9 @@
 ---
+const base = import.meta.env.BASE_URL;
+
 const navLinks = [
-  { label: 'Architecture', href: '#architecture' },
-  { label: 'Features', href: '#features' },
-  { label: 'Tech Stack', href: '#tech-stack' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'Contact', href: `${base}/contact` },
+  { label: 'Blog', href: 'https://jplemoussu.github.io/beyond-algos/', external: true },
 ];
 ---
 
@@ -17,7 +17,11 @@ const navLinks = [
     <ul class="hidden items-center gap-8 md:flex">
       {navLinks.map((link) => (
         <li>
-          <a href={link.href} class="text-sm text-text-secondary transition-colors hover:text-text-primary">
+          <a
+            href={link.href}
+            class="text-sm text-text-secondary transition-colors hover:text-text-primary"
+            {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          >
             {link.label}
           </a>
         </li>
@@ -45,6 +49,7 @@ const navLinks = [
           <a
             href={link.href}
             class="mobile-nav-link block rounded-md px-3 py-2 text-sm text-text-secondary transition-colors hover:bg-bg-elevated hover:text-text-primary"
+            {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
           >
             {link.label}
           </a>

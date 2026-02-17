@@ -2,29 +2,70 @@
 const faqs = [
   {
     question: 'Why run locally instead of in the cloud?',
-    answer:
-      'Your positions, your signals, your execution logic, your API keys — none of it leaves your machine. No shared infrastructure. Glasshouse doesn\'t run a public-facing server. The decision loop stays tight — no round trip to a cloud server. Data in, logic runs, order out.',
+    answer: `<p>We're entering a new era of local-first AI compute. Running locally gives you full ownership and control over your system, without the risks and costs of cloud platforms.</p>
+<p>Your positions, your signals, your execution logic, your API keys — none of it leaves your machine. No shared infrastructure.</p>
+<p>The decision loop is tight — no round trip to a cloud server to check a condition and fire an order. Data in, logic runs, order out. Your system stays up as long as your machine does.</p>`,
   },
   {
     question: 'Can I use it alongside my existing tools?',
-    answer:
-      'Glasshouse doesn\'t replace your stack — it sits alongside, or underneath it. Start with the price feeds and broker gateway. Your charting tools and research platforms all stay in place. Local APIs let any existing scripts, dashboards, or notebooks plug in directly.',
+    answer: `<p>Glasshouse doesn't replace your stack — it sits alongside, or underneath it. Use whichever components provide value. Start with the price feeds and broker gateway, which are notoriously painful to implement correctly on your own. Your charting tools and research platforms all stay in place. Local APIs let any existing scripts, dashboards, or notebooks plug in directly.</p>`,
   },
   {
     question: 'Do I need to know Python to develop a trader agent?',
-    answer:
-      'It helps, but it\'s no longer a barrier. With coding assistants widely available, you can describe your workflow in plain language and get a working agent drafted from a few examples. For tactical trade plans using smart triggers, no code is needed at all.',
+    answer: `<p>It helps, but it's no longer a barrier. With coding assistants widely available, you can describe your workflow in plain language and get a working agent drafted from a few included examples. The Glasshouse library is deliberately simple — most of the complexity is handled by the platform. For tactical trade plans using smart triggers, no code is needed at all.</p>
+<p>Most brokers provide a paper trading environment, so you can test everything before committing real capital.</p>`,
   },
   {
-    question: 'Aren\'t there already platforms that do this?',
-    answer:
-      'None of them combine local-first infrastructure, real-time orchestration, risk enforcement, and the ability to run both autonomous agents and discretionary positions from one system. Glasshouse is designed to grow with you — start with smart triggers and move into fully automated agents as your confidence develops.',
+    question: "Aren't there already platforms that do this?",
+    answer: `<p>None of them combine local-first infrastructure, real-time orchestration, risk enforcement, and the ability to run both autonomous agents and discretionary positions from one system. Most force you to pick a lane — quant or manual, cloud or local, broker-dependent or DIY.</p>
+<p>Glasshouse is designed to grow with you. Start with smart triggers and manual trade plans, and move into fully automated agents as your confidence and skill develops. No one starts as a quant — and you shouldn't need to become one to start managing your positions properly.</p>
+<p>Even the most systematic investor will itch to place a discretionary position. Jim Simons — while building the most successful quantitative fund in history — kept trying to override his own models to buy gold on instinct. Most platforms force you to choose: systematic or discretionary. Glasshouse doesn't. Both run side by side, under the same risk controls.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Platform</th>
+      <th>Limitation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>QuantConnect</td>
+      <td>Built cloud-first — increasingly outdated as personal AI and local compute mature. You pay per live node — one algorithm per server — with no shared state between them. No discretionary workflow, no built-in risk engine. Steep learning curve.</td>
+    </tr>
+    <tr>
+      <td>Alpaca</td>
+      <td>Broker with an API — your capital is locked with them. No orchestration, no signals, no risk layer. You build everything else.</td>
+    </tr>
+    <tr>
+      <td>TradingView</td>
+      <td>Best charts in the business, but no execution, no position management, no automation beyond alerts. Glasshouse uses TradingView Lightweight Charts for the interface, but adds a full execution and risk layer on top.</td>
+    </tr>
+    <tr>
+      <td>Composer</td>
+      <td>No-code, retail-focused. Strategies are if-then allocation logic that executes once daily in a 15-minute window — no intraday control, no position sizing, no risk management beyond what you hardcode. They hold your capital, US equities only.</td>
+    </tr>
+    <tr>
+      <td>QuantRocket</td>
+      <td>Local and Python — closest philosophically. But narrower: backtesting-focused, no real-time orchestration, no risk engine, no agent framework.</td>
+    </tr>
+    <tr>
+      <td>OpenBB</td>
+      <td>Excellent open-source research and data aggregation — essentially a free Bloomberg alternative. But analysis only: no execution, no broker integration, no position management, no risk controls, no trade automation.</td>
+    </tr>
+  </tbody>
+</table>`,
+  },
+  {
+    question: 'Why does this exist?',
+    answer: `<p>I spent nearly two decades working in the financial software industry. Ironically, I had nothing to manage my own investments. Based in Sydney, holding a mix of employee equity and personal positions in US tech companies, I was setting alarms for overnight sessions, juggling disconnected tools, and drained by the incessant monologue of decisions — trim or hold, add or wait, take profit or let it run. I needed a system that could watch my positions while I slept and take the weight off while I was awake. Nothing on the market brought it all together in an approachable way.</p>
+<p>Much to my dismay, AI coding assistants weren't a thing when I started this project. Every piece of the architecture was painfully designed and written by hand. Though in fairness, I'm not convinced you can vibe code a reliable real-time, multi-client asyncio Python program that wrestles with socket-based broker APIs designed in the 90s — guided only by documentation written as a farewell gift by a departing intern.</p>
+<p>By the time the platform matured, the timing landed perfectly: local AI models became viable on a single machine, and large models could leverage local tools through MCP connectors — exactly the kind of infrastructure Glasshouse was already built to support. What started as a personal tool evolved into a fully fledged platform, now available to friends and family through a closed beta.</p>`,
   },
 ];
 ---
 
 <section id="faq" class="px-6 py-24">
-  <div class="mx-auto max-w-3xl">
+  <div class="mx-auto max-w-5xl">
     <h2 class="text-center text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
       Frequently Asked Questions
     </h2>
@@ -43,11 +84,54 @@ const faqs = [
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
             </svg>
           </summary>
-          <div class="px-6 pb-4">
-            <p class="text-sm leading-relaxed text-text-secondary">{faq.answer}</p>
-          </div>
+          <div class="faq-answer px-6 pb-6" set:html={faq.answer} />
         </details>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .faq-answer :global(p) {
+    margin-top: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+  }
+
+  .faq-answer :global(p:first-child) {
+    margin-top: 0;
+  }
+
+  .faq-answer :global(table) {
+    margin-top: 1.5rem;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    line-height: 1.625;
+  }
+
+  .faq-answer :global(thead) {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq-answer :global(th) {
+    padding: 0.625rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .faq-answer :global(td) {
+    padding: 0.625rem 1rem;
+    color: var(--color-text-secondary);
+    vertical-align: top;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .faq-answer :global(td:first-child) {
+    white-space: nowrap;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+</style>

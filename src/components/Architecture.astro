@@ -3,17 +3,17 @@ const components = [
   {
     title: 'Streaming price feeds',
     description:
-      'Request a dataline to stream real time price updates. Fast local queries with pre-aggregated bars - from 5 seconds to yearly intervals. Extended hours and pre-market included.',
+      'Request a dataline to stream real time price updates. Fast local queries with pre-aggregated bars - from 5 seconds to yearly resolutions. Extended hours and pre-market included.',
   },
   {
     title: 'Direct broker access',
     description:
-      'Bring your own broker. Your cash and assets stay in your name, at your broker — not held by a intermediary platform that could freeze withdrawals or collapse overnight. Direct connection gives you full real time control over execution and positions.',
+      'Bring your own broker. Your cash and assets stay in your name, at your broker — not held by a intermediary platform that can freeze withdrawals or collapse overnight. Direct connection gives you full real time control over execution and positions.',
   },
   {
-    title: 'Signal engine',
+    title: 'Signal data',
     description:
-      'Technical indicators, financial metrics and market signals collected for your universe of instruments. Vectorised computation, instant access. Need a custom indicator? Add it to the computation pipeline.',
+      'Technical indicators, financial metrics and market trend signals. Vectorised computation for your entire universe of instruments, instant local access. Need a custom indicator? Add it to the computation pipeline.',
   },
   {
     title: 'Risk engine',
@@ -21,14 +21,14 @@ const components = [
       'Kill switches and position controls activate when conditions are met - drawdown limits, volatility thresholds or earnings proximity without P&L buffer. Parameterise your rules once and let the system hold the line',
   },
   {
-    title: 'Deploy trading agents',
+    title: 'Trading agent orchestration',
     description:
-      'Run a trading desk of autonomous agents. Code their workflow natively in Python: when to scan, when to enter, how to size, when to exit. Register each agent on the platform with its own capital allocation and risk rules. Monitor and intervene at any point: pause, stop, or kill and flatten all positions.',
+      'Deploy trading agents, each running as an isolated client with its own capital allocation, risk limits, and internal state. All orders are routed through a central message bus to the shared risk engine and execution layer — ensuring global exposure limits are enforced, regardless of how many agents are running.',
   },
   {
     title: 'Smart triggers',
     description:
-      'Directly plan a trade using conditional triggers. Chain them across entry, add, reduce, and exit to orchestrate the full lifecycle. Glasshouse watches the conditions and submits orders only when they are met — keeping your levels hidden from the book until execution.',
+      'Plan trades using conditional triggers. Chain them across entry, add, reduce, and exit to orchestrate the full lifecycle. Glasshouse watches the conditions and submits orders only when they are met — keeping your levels hidden from the book until execution.',
   },
 ];
 ---
@@ -39,7 +39,7 @@ const components = [
       What's behind the glass
     </h2>
     <p class="mx-auto mt-4 max-w-2xl text-center text-text-secondary">
-        End-to-end orchestration, from signal to close. Scan technical and fundamental signals, analyse price action, size positions, manage risk, execute orders, monitor exposure — and scale out when conditions change.
+        Glasshouse is a headless trading automation platform. Scan signals, analyse price action, size positions, execute orders, monitor exposure, and scale out when conditions change.
     </p>
 
     <div class="mt-16 grid gap-8 md:grid-cols-2">
