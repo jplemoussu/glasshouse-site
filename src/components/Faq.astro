@@ -3,12 +3,12 @@ const faqs = [
   {
     question: 'Why run locally instead of in the cloud?',
     answer: `<p>We're entering a new era of local-first AI compute. Running locally gives you full ownership and control over your system, without the risks and costs of cloud platforms.</p>
-<p>Your positions, your signals, your execution logic, your API keys — none of it leaves your machine. No shared infrastructure.</p>
+<p>Your workflows, your collected data, your investment research notes, your API keys — none of it leaves your machine. No shared infrastructure.</p>
 <p>The decision loop is tight — no round trip to a cloud server to check a condition and fire an order. Data in, logic runs, order out. Your system stays up as long as your machine does.</p>`,
   },
   {
     question: 'Can I use it alongside my existing tools?',
-    answer: `<p>Glasshouse doesn't replace your stack — it sits alongside, or underneath it. Use whichever components provide value. Start with the price feeds and broker gateway, which are notoriously painful to implement correctly on your own. Your charting tools and research platforms all stay in place. Local APIs let any existing scripts, dashboards, or notebooks plug in directly.</p>`,
+    answer: `<p>Glasshouse doesn't replace your trading tool stack — it underpins it. Use what you need. Streaming price feeds and broker control are hard to implement and a headache to maintain — Glasshouse does the heavy lifting.</p>`,
   },
   {
     question: 'Do I need to know Python to develop a trader agent?',
@@ -30,7 +30,7 @@ const faqs = [
   <tbody>
     <tr>
       <td>QuantConnect</td>
-      <td>Built cloud-first — increasingly outdated as personal AI and local compute mature. You pay per live node — one algorithm per server — with no shared state between them. No discretionary workflow, no built-in risk engine. Steep learning curve.</td>
+      <td> Pay per live node — one algorithm per server — with no shared state between them. No discretionary workflow, no built-in risk engine. Steep learning curve.</td>
     </tr>
     <tr>
       <td>Alpaca</td>
@@ -38,7 +38,7 @@ const faqs = [
     </tr>
     <tr>
       <td>TradingView</td>
-      <td>Best charts in the business, but no execution, no position management, no automation beyond alerts. Glasshouse uses TradingView Lightweight Charts for the interface, but adds a full execution and risk layer on top.</td>
+      <td>Great charts and technical indicators, but no execution, no position management, no automation beyond alerts and clunky webhooks. Glasshouse uses Lightweight Charts for the interface, but adds a full execution and risk layer on top.</td>
     </tr>
     <tr>
       <td>Composer</td>
@@ -57,9 +57,10 @@ const faqs = [
   },
   {
     question: 'Why does this exist?',
-    answer: `<p>I spent nearly two decades working in the financial software industry. Ironically, I had nothing to manage my own investments. Based in Sydney, holding a mix of employee equity and personal positions in US tech companies, I was setting alarms for overnight sessions, juggling disconnected tools, and drained by the incessant monologue of decisions — trim or hold, add or wait, take profit or let it run. I needed a system that could watch my positions while I slept and take the weight off while I was awake. Nothing on the market brought it all together in an approachable way.</p>
-<p>Much to my dismay, AI coding assistants weren't a thing when I started this project. Every piece of the architecture was painfully designed and written by hand. Though in fairness, I'm not convinced you can vibe code a reliable real-time, multi-client asyncio Python program that wrestles with socket-based broker APIs designed in the 90s — guided only by documentation written as a farewell gift by a departing intern.</p>
-<p>By the time the platform matured, the timing landed perfectly: local AI models became viable on a single machine, and large models could leverage local tools through MCP connectors — exactly the kind of infrastructure Glasshouse was already built to support. What started as a personal tool evolved into a fully fledged platform, now available to friends and family through a closed beta.</p>`,
+    answer: `<p>I spent over two decades working in the financial software industry. Ironically, I was terrible at managing my own finances and investments. Based in Sydney, holding a mix of US employee and personal equities, I was setting alarms for overnight sessions, using disconnected tools, being mentally drained by the continuous decision loop — buy more, sell, or let it run. I needed a system that could watch my positions while I slept and take the weight off while I was awake. Nothing out there brought it all together in an accessible way.</p>
+<p>Sadly, AI coding assistants weren't a thing when I started. Every piece of the architecture has been painfully designed and written by hand. In fairness, I'm not convinced you can vibe code a reliable real-time, multi-client asyncio Python platform that wrangles socket-based broker APIs designed in the 90s.
+</p>
+<p>By the time the platform matured, local AI models became viable on a single machine, and large models could leverage local tools through MCP connectors — exactly the kind of infrastructure Glasshouse was already built to support. What started as a personal tool evolved into a fully fledged platform.</p>`,
   },
 ];
 ---
