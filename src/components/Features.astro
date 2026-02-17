@@ -40,23 +40,53 @@ const features: Feature[] = [
 
 <section id="features" class="px-6 py-24">
   <div class="mx-auto max-w-6xl">
-    <h2 class="text-center text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
-      What it does
+    <h2 class="text-3xl font-bold tracking-tight text-text-primary sm:text-4xl">
+      Glasshouse in action
     </h2>
-    <p class="mx-auto mt-4 max-w-2xl text-center text-text-secondary">
-      From signal to close — scan, analyse, size, execute, monitor, and exit.
-    </p>
 
-    <div class="mt-16 grid gap-12 md:grid-cols-2">
-      {features.map((feature) => (
-        <div class="flex flex-col gap-4">
-          {feature.media && (
-            <div class="overflow-hidden rounded-lg border border-border bg-bg-elevated">
-              {feature.media.type === 'image' ? (
+    <div class="mt-12 grid gap-0 overflow-hidden rounded-xl border border-border md:grid-cols-[2fr_3fr]">
+      <!-- Left: tab list -->
+      <div class="border-r border-border bg-bg-elevated">
+        {features.map((feature, i) => (
+          <button
+            data-tab={i}
+            class:list={[
+              'feature-tab block w-full border-b border-border px-8 py-6 text-left transition-colors',
+              i === 0 ? 'bg-bg-card' : 'hover:bg-bg-card/50',
+            ]}
+          >
+            <h3 class:list={[
+              'text-lg font-semibold transition-colors',
+              i === 0 ? 'text-accent' : 'text-text-muted',
+            ]}>
+              {feature.title}
+            </h3>
+            <p class:list={[
+              'mt-2 text-sm leading-relaxed transition-opacity',
+              i === 0 ? 'text-text-secondary opacity-100' : 'text-text-muted opacity-0 h-0 overflow-hidden',
+            ]}>
+              {feature.description}
+            </p>
+          </button>
+        ))}
+      </div>
+
+      <!-- Right: media panel -->
+      <div class="relative bg-bg-card p-6 flex items-center justify-center min-h-[400px]">
+        {features.map((feature, i) => (
+          <div
+            data-panel={i}
+            class:list={[
+              'feature-panel absolute inset-6 flex items-center justify-center transition-opacity duration-300',
+              i === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none',
+            ]}
+          >
+            {feature.media ? (
+              feature.media.type === 'image' ? (
                 <img
                   src={feature.media.src}
                   alt={feature.media.alt || feature.title}
-                  class="w-full"
+                  class="max-h-full max-w-full rounded-lg object-contain"
                   loading="lazy"
                 />
               ) : (
@@ -66,17 +96,58 @@ const features: Feature[] = [
                   muted
                   loop
                   playsinline
-                  class="w-full"
+                  class="max-h-full max-w-full rounded-lg object-contain"
                 />
-              )}
-            </div>
-          )}
-          <div>
-            <h3 class="text-lg font-semibold text-text-primary">{feature.title}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-text-secondary">{feature.description}</p>
+              )
+            ) : (
+              <div class="flex flex-col items-center gap-3 text-text-muted">
+                <svg class="h-16 w-16 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span class="text-sm">Screenshot or recording</span>
+              </div>
+            )}
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  const tabs = document.querySelectorAll('.feature-tab');
+  const panels = document.querySelectorAll('.feature-panel');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const index = tab.getAttribute('data-tab');
+
+      tabs.forEach((t) => {
+        const isActive = t.getAttribute('data-tab') === index;
+        t.classList.toggle('bg-bg-card', isActive);
+        t.classList.toggle('hover:bg-bg-card/50', !isActive);
+        const heading = t.querySelector('h3');
+        const desc = t.querySelector('p');
+        if (heading) {
+          heading.classList.toggle('text-accent', isActive);
+          heading.classList.toggle('text-text-muted', !isActive);
+        }
+        if (desc) {
+          desc.classList.toggle('text-text-secondary', isActive);
+          desc.classList.toggle('text-text-muted', !isActive);
+          desc.classList.toggle('opacity-100', isActive);
+          desc.classList.toggle('opacity-0', !isActive);
+          desc.classList.toggle('h-0', !isActive);
+          desc.classList.toggle('overflow-hidden', !isActive);
+        }
+      });
+
+      panels.forEach((p) => {
+        const isActive = p.getAttribute('data-panel') === index;
+        p.classList.toggle('opacity-100', isActive);
+        p.classList.toggle('opacity-0', !isActive);
+        p.classList.toggle('pointer-events-none', !isActive);
+      });
+    });
+  });
+</script>
