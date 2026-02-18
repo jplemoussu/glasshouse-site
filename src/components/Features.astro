@@ -1,4 +1,6 @@
 ---
+import CodeBlock from './CodeBlock.astro';
+
 interface Feature {
   title: string;
   description: string;
@@ -7,38 +9,83 @@ interface Feature {
     src: string;
     alt?: string;
   };
+  customPanel?: string;
 }
+
+const executionPresetsCode = `ORDER_PRESETS = {
+    # Limit order, converts to market if not filled after 5 min.
+    # Canceled if not filled after 1 hour.
+    # Smart routes to the best available venue.
+    Operation.ACCUMULATE: OrderSettings(
+        order_type=OrderType.AUTO_LIMIT,
+        routing_exchange=RoutingExchange.SMART,
+        execute_outside_rth=False,
+        convert_to_market_after_secs=5 * 60,
+        fill_timeout_secs=60 * 60,
+    ),
+    # Urgent liquidation — market order, outside hours.
+    Operation.LIQUIDATE: OrderSettings(
+        order_type=OrderType.MARKET,
+        execute_outside_rth=True,
+    ),
+}`;
 
 const features: Feature[] = [
   {
     title: 'Smart Triggers',
     description:
       'Set a primary condition — cross, touch, or break of a level or indicator — then layer validation filters using natural syntax. Group triggers into setups, assign priority, and define one-cancels-other conditions.',
+    media: {
+      type: 'video',
+      src: `${import.meta.env.BASE_URL}/features/smart-triggers.mp4`,
+      alt: 'Smart Triggers demo',
+    },
   },
   {
     title: 'Execution Presets',
     description:
-      'Auto limit orders with configurable slippage tolerance, expiration, time-of-day windows and auto-convert to market if not filled after a certain time.',
+      'Auto limit orders with configurable expiration and auto-convert to market if not filled after a certain time.',
+    customPanel: 'execution-presets',
   },
   {
     title: 'Position Sizing',
     description:
       'Scale into positions using pyramid or volatility-targeting presets. Specify your desired allocation: start, mid, full, or overweight. Glasshouse calculates optimal size based on current price, volatility, and available capital.',
+    media: {
+      type: 'video',
+      src: `${import.meta.env.BASE_URL}/features/position-sizing.mp4`,
+      alt: 'Position Sizing demo',
+    },
   },
   {
     title: 'Max Stops',
     description:
-      'Cap your downside with hidden max stops — held locally, never placed at the broker — that attach automatically to new positions.',
+      'Cap your downside with hidden max stops — held locally, invisible to the broker order book — that attach automatically to new positions.',
+    media: {
+      type: 'video',
+      src: `${import.meta.env.BASE_URL}/features/max-stops.mp4`,
+      alt: 'Max Stops demo',
+    },
   },
   {
     title: 'Hard Risk Limits',
     description:
       'Set exposure limits — both cumulative and single-position — along with per session velocity controls: max spend, max number of buys, and repeat buy limits per instrument. These limits cannot be modified during live trading, preventing emotional overrides and rogue AI behaviour. All orders are routed to a risk check before execution, and rejected if they breach any limits.',
+    media: {
+      type: 'image',
+      src: `${import.meta.env.BASE_URL}/features/Risk Controls.png`,
+      alt: 'Hard risk limit controls',
+    },
   },
   {
     title: 'Trading Agents Dashboard',
     description:
       'Run a trading desk of autonomous agents. Code their workflow natively in Python: when to scan, when to enter, how to size, when to exit. Register each agent on the platform with its own capital allocation and risk rules. Monitor and intervene at any point: pause, stop, or kill and flatten all positions.',
+    media: {
+      type: 'video',
+      src: `${import.meta.env.BASE_URL}/features/trading-agents-dashboard.mp4`,
+      alt: 'Trading Agents Dashboard demo',
+    },
   },
 ];
 ---
@@ -82,11 +129,15 @@ const features: Feature[] = [
           <div
             data-panel={i}
             class:list={[
-              'feature-panel absolute inset-6 flex items-center justify-center transition-opacity duration-300',
+              'feature-panel absolute inset-6 flex items-start justify-center transition-opacity duration-300',
               i === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none',
             ]}
           >
-            {feature.media ? (
+            {feature.customPanel === 'execution-presets' ? (
+              <div class="w-full">
+                <CodeBlock code={executionPresetsCode} lang="python" filename="execution_presets.py" />
+              </div>
+            ) : feature.media ? (
               feature.media.type === 'image' ? (
                 <img
                   src={feature.media.src}
@@ -101,7 +152,7 @@ const features: Feature[] = [
                   muted
                   loop
                   playsinline
-                  class="max-h-full max-w-full rounded-lg object-contain"
+                  class="w-full rounded-lg"
                 />
               )
             ) : (

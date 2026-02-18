@@ -1,0 +1,31 @@
+---
+import { Code } from 'astro:components';
+
+interface Props {
+  code: string;
+  lang?: string;
+  filename?: string;
+}
+
+const { code, lang = 'python', filename = '' } = Astro.props;
+---
+
+<div class="overflow-hidden rounded-lg border border-border">
+  <div class="codeblock-wrap overflow-x-auto bg-bg p-4 text-sm leading-relaxed">
+    <Code code={code} lang={lang} theme="github-dark" />
+  </div>
+</div>
+
+<style is:global>
+  .codeblock-wrap pre {
+    background: transparent !important;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+  }
+  .codeblock-wrap code {
+    font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 0.8rem;
+    line-height: 1.6;
+  }
+</style>

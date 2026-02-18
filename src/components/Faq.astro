@@ -2,13 +2,15 @@
 const faqs = [
   {
     question: 'Why run locally instead of in the cloud?',
-    answer: `<p>We're entering a new era of local-first AI compute. Running locally gives you full ownership and control over your system, without the risks and costs of cloud platforms.</p>
-<p>Your workflows, your collected data, your investment research notes, your API keys — none of it leaves your machine. No shared infrastructure.</p>
-<p>The decision loop is tight — no round trip to a cloud server to check a condition and fire an order. Data in, logic runs, order out. Your system stays up as long as your machine does.</p>`,
+    answer: `<p>If you're trading frequently, you're probably already running your broker's desktop client for the speed and depth that web platforms can't match. Glasshouse picks up where those terminals leave off.</p>
+<p>Persistent automation, your own logic, your research notes, your market data — none of it leaves your machine. Connect any local or remote AI model directly into the decision layer: analyse price action, surface signals, draft a thesis. When a condition is met, the loop is tight — no round trip to a cloud server, no shared infrastructure. Data in, logic runs, order out.</p>`,
   },
   {
     question: 'Can I use it alongside my existing tools?',
-    answer: `<p>Glasshouse doesn't replace your trading tool stack — it underpins it. Use what you need. Streaming price feeds and broker control are hard to implement and a headache to maintain — Glasshouse does the heavy lifting.</p>`,
+    answer: `
+        <p>Glasshouse doesn't replace your trading tool stack — it is the bridge between research and live markets. Pick and choose what you need. Streaming price feeds and broker control are hard to implement and a headache to maintain — Glasshouse does the heavy lifting.</p>
+        <p>Backtesting is deliberately out of scope as best left to a specialised tools that can handle the computational infrastructure for historical simulation. Refine your strategy there, then deploy with Glasshouse when you're ready to go live.</p>
+        `,
   },
   {
     question: 'Do I need to know Python to develop a trader agent?',
@@ -18,8 +20,8 @@ const faqs = [
   {
     question: "Aren't there already platforms that do this?",
     answer: `<p>None of them combine local-first infrastructure, real-time orchestration, risk enforcement, and the ability to run both autonomous agents and discretionary positions from one system. Most force you to pick a lane — quant or manual, cloud or local, broker-dependent or DIY.</p>
-<p>Glasshouse is designed to grow with you. Start with smart triggers and manual trade plans, and move into fully automated agents as your confidence and skill develops. No one starts as a quant — and you shouldn't need to become one to start managing your positions properly.</p>
-<p>Even the most systematic investor will itch to place a discretionary position. Jim Simons — while building the most successful quantitative fund in history — kept trying to override his own models to buy gold on instinct. Most platforms force you to choose: systematic or discretionary. Glasshouse doesn't. Both run side by side, under the same risk controls.</p>
+<p>Glasshouse is designed to grow with you. Start with smart triggers and manual trade plans, and move into fully automated agents as your confidence and skill develops. No one starts as a quant — and you shouldn't need to become one to manage your investment bets.</p>
+<p>Even the most systematic investor will itch to place discretionary bets. Jim Simons — while building the most successful quantitative fund in history — overrode his own models to buy gold on instinct. Glasshouse can run both systematic or discretionary approaches side by side.</p>
 <table>
   <thead>
     <tr>
@@ -38,11 +40,11 @@ const faqs = [
     </tr>
     <tr>
       <td>TradingView</td>
-      <td>Great charts and technical indicators, but no execution, no position management, no automation beyond alerts and clunky webhooks. Glasshouse uses Lightweight Charts for the interface, but adds a full execution and risk layer on top.</td>
+      <td>Great charts and technical indicators, but no execution, no position management, no automation beyond alerts and unsecure webhooks. Glasshouse uses Lightweight Charts for the interface, but adds a full execution and risk layer on top.</td>
     </tr>
     <tr>
       <td>Composer</td>
-      <td>No-code, retail-focused. Strategies are if-then allocation logic that executes once daily in a 15-minute window — no intraday control, no position sizing, no risk management beyond what you hardcode. They hold your capital, US equities only.</td>
+      <td>No code strategies built as if-then-that allocation logic that executes once daily in a 15-minute window — no intraday control, no position sizing, no risk management beyond what you hardcode. They hold your capital, US equities only.</td>
     </tr>
     <tr>
       <td>QuantRocket</td>
