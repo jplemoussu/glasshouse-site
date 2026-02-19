@@ -4,8 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://justinpinkney.github.io',
-  base: '/glasshouse-site',
+  site: 'https://glasshouse.markets',
   output: 'static',
   vite: {
     plugins: [tailwindcss()],
