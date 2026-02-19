@@ -9,19 +9,20 @@ const faqs = [
     question: 'Can I use it alongside my existing tools?',
     answer: `
         <p>Glasshouse doesn't replace your trading tool stack — it is the bridge between research and live markets. Pick and choose what you need. Streaming price feeds and broker control are hard to implement and a headache to maintain — Glasshouse does the heavy lifting.</p>
-        <p>Backtesting is deliberately out of scope as best left to a specialised tools that can handle the computational infrastructure for historical simulation. Refine your strategy there, then deploy with Glasshouse when you're ready to go live.</p>
+        <p>Backtesting is deliberately out of scope — best left to specialised tools that can handle the computational infrastructure for historical simulation. Refine your strategy there, then deploy with Glasshouse when you're ready to go live.</p>
         `,
   },
   {
-    question: 'Do I need to know Python to develop a trader agent?',
+    question: 'Do I need to know Python to develop an autonomous trader agent?',
     answer: `<p>It helps, but it's no longer a barrier. With coding assistants widely available, you can describe your workflow in plain language and get a working agent drafted from a few included examples. The Glasshouse library is deliberately simple — most of the complexity is handled by the platform. For tactical trade plans using smart triggers, no code is needed at all.</p>
 <p>Most brokers provide a paper trading environment, so you can test everything before committing real capital.</p>`,
   },
   {
     question: "Aren't there already platforms that do this?",
     answer: `<p>None of them combine local-first infrastructure, real-time orchestration, risk enforcement, and the ability to run both autonomous agents and discretionary positions from one system. Most force you to pick a lane — quant or manual, cloud or local, broker-dependent or DIY.</p>
-<p>Glasshouse is designed to grow with you. Start with smart triggers and manual trade plans, and move into fully automated agents as your confidence and skill develops. No one starts as a quant — and you shouldn't need to become one to manage your investment bets.</p>
+<p>Glasshouse is designed to grow with you. Start with smart triggers and manual trade plans, and move into fully automated agents as your confidence and skills develop. No one starts as a quant — and you shouldn't need to become one to manage your investment bets.</p>
 <p>Even the most systematic investor will itch to place discretionary bets. Jim Simons — while building the most successful quantitative fund in history — overrode his own models to buy gold on instinct. Glasshouse can run both systematic or discretionary approaches side by side.</p>
+<p>Here are the closest alternatives:</p>
 <table>
   <thead>
     <tr>
@@ -44,7 +45,7 @@ const faqs = [
     </tr>
     <tr>
       <td>Composer</td>
-      <td>No code strategies built as if-then-that allocation logic that executes once daily in a 15-minute window — no intraday control, no position sizing, no risk management beyond what you hardcode. They hold your capital, US equities only.</td>
+      <td>No-code strategies built as if-then-that allocation logic that executes once daily in a 15-minute window — no intraday control, no position sizing, no risk management beyond what you hardcode. They hold your capital, US equities only.</td>
     </tr>
     <tr>
       <td>QuantRocket</td>
@@ -60,7 +61,7 @@ const faqs = [
   {
     question: 'Why does this exist?',
     answer: `<p>I spent over two decades working in the financial software industry. Ironically, I was terrible at managing my own finances and investments. Based in Sydney, holding a mix of US employee and personal equities, I was setting alarms for overnight sessions, using disconnected tools, being mentally drained by the continuous decision loop — buy more, sell, or let it run. I needed a system that could watch my positions while I slept and take the weight off while I was awake. Nothing out there brought it all together in an accessible way.</p>
-<p>Sadly, AI coding assistants weren't a thing when I started. Every piece of the architecture has been painfully designed and written by hand. In fairness, I'm not convinced you can vibe code a reliable real-time, multi-client asyncio Python platform that wrangles socket-based broker APIs designed in the 90s.
+<p>Sadly, AI coding assistants weren't a thing when I started. Every piece of Glasshouse's architecture has been painfully designed and written by hand. In fairness, I'm not convinced you can vibe code a reliable real-time, multi-client asyncio Python platform that wrangles socket-based broker APIs designed in the 90s.
 </p>
 <p>By the time the platform matured, local AI models became viable on a single machine, and large models could leverage local tools through MCP connectors — exactly the kind of infrastructure Glasshouse was already built to support. What started as a personal tool evolved into a fully fledged platform.</p>`,
   },
