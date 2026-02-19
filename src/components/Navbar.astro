@@ -1,17 +1,15 @@
 ---
-const base = import.meta.env.BASE_URL;
-
 const navLinks = [
-  { label: 'Changelog', href: `${base}/changelog` },
-  { label: 'Contact', href: `${base}/contact` },
+  { label: 'Changelog', href: '/changelog' },
+  { label: 'Contact', href: '/contact' },
   { label: 'Blog', href: 'https://jplemoussu.github.io/beyond-algos/', external: true },
 ];
 ---
 
 <nav class="fixed top-0 left-0 right-0 z-50 border-b border-border bg-bg/80 backdrop-blur-md">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-    <a href={import.meta.env.BASE_URL}>
-      <img src={`${import.meta.env.BASE_URL}/logo.png`} alt="Glasshouse" class="h-6" />
+    <a href="/">
+      <img src="/logo.png" alt="Glasshouse" class="h-6" />
     </a>
 
     <!-- Desktop nav -->
