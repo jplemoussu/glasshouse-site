@@ -5,7 +5,7 @@
   <div class="mx-auto max-w-4xl text-center">
     <h1 class="text-4xl font-bold leading-tight tracking-tight text-text-primary sm:text-5xl lg:text-6xl">
       Your positions don't sleep.<br />
-      <span class="bg-gradient-to-br from-[#a0c4e8] via-[#e0eaf4] to-[#a0c4e8] bg-clip-text text-transparent">Meet the system that keeps up.</span>
+      <span class="hero-line2"><span id="typed-text" class="bg-gradient-to-br from-[#a0c4e8] via-[#e0eaf4] to-[#a0c4e8] bg-clip-text text-transparent"></span><span id="hero-cursor"></span></span>
     </h1>
     <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-text-secondary">
       Automate your investment decisions — from balanced portfolios, opportunistic trading to fully autonomous strategies — all on a single platform that runs on your machine.
@@ -15,3 +15,91 @@
     </p>
   </div>
 </section>
+
+<style>
+  .hero-line2 {
+    display: block;
+    min-height: 1.25em; /* prevent layout shift when empty */
+  }
+
+  #hero-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 0.8em;
+    background: #a0c4e8;
+    margin-left: 3px;
+    vertical-align: text-bottom;
+    animation: blink 0.7s step-end infinite;
+  }
+
+  #hero-cursor.paused {
+    animation: none;
+    opacity: 1;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+</style>
+
+<script>
+  const typedEl  = document.getElementById('typed-text') as HTMLElement;
+  const cursorEl = document.getElementById('hero-cursor') as HTMLElement;
+
+  const PHRASES = [
+    "Meet the system that keeps up.",
+    "So you can.",
+  ];
+
+  const TYPE_SPEED   = 60;
+  const DELETE_SPEED = 45;
+  const PAUSE_AFTER  = 1800;
+  const PAUSE_EMPTY  = 600;
+
+  let phraseIndex = 0;
+
+  // Reserve the height needed for the longest phrase at this screen width
+  const container = typedEl.parentElement as HTMLElement;
+  const longestPhrase = PHRASES.reduce((a, b) => a.length > b.length ? a : b);
+  typedEl.textContent = longestPhrase;
+  container.style.minHeight = container.offsetHeight + 'px';
+  typedEl.textContent = '';
+
+  const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
+
+  async function type(text: string) {
+    cursorEl.classList.remove('paused');
+    for (let i = 0; i <= text.length; i++) {
+      typedEl.textContent = text.slice(0, i);
+      await sleep(TYPE_SPEED);
+    }
+  }
+
+  async function erase() {
+    cursorEl.classList.remove('paused');
+    const text = typedEl.textContent ?? '';
+    for (let i = text.length; i >= 0; i--) {
+      typedEl.textContent = text.slice(0, i);
+      await sleep(DELETE_SPEED);
+    }
+  }
+
+  async function run() {
+    await sleep(800);
+
+    while (true) {
+      await type(PHRASES[phraseIndex]);
+
+      cursorEl.classList.add('paused');
+      await sleep(PAUSE_AFTER);
+
+      await erase();
+      await sleep(PAUSE_EMPTY);
+
+      phraseIndex = (phraseIndex + 1) % PHRASES.length;
+    }
+  }
+
+  run();
+</script>
