@@ -13,15 +13,17 @@ const faqs = [
         `,
   },
   {
-    question: 'Do I need to know Python to develop an autonomous trader agent?',
-    answer: `<p>It helps, but it's no longer a barrier. With coding assistants widely available, you can describe your workflow in plain language and get a working agent drafted from a few included examples. The Glasshouse library is deliberately simple — most of the complexity is handled by the platform. For tactical trade plans using smart triggers, no code is needed at all.</p>
-<p>Most brokers provide a paper trading environment, so you can test everything before committing real capital.</p>`,
-  },
+    question: 'Do I need to know a programming language to develop a trading strategy?',
+    answer: `<p>You can if you want full deterministic control, but it is not necessary. Glasshouse exposes connectors to let an LLM drive your trading actions, so you can define a strategy in plain English using markdown rather than writing code.</p>
+        <p>You can build a logical workflow by chaining conditions such as <code>abort if the S&amp;P 500 is below its 500-day SMA</code>, or actions such as <code>enter with a mid size bet using volatility targeting</code>. The LLM runs on your chosen schedule and follows your instructions.</p>
+        <p>Most brokers provide a paper trading environment, so you can test everything before committing real capital.</p>
+        <p>Note that LLM token usage fees apply on each run, so this approach is best suited to lower-frequency strategies. For higher-frequency execution, a local open-source model or a coded strategy is usually the better fit.</p>`,
+},
   {
     question: "Aren't there already platforms that do this?",
     answer: `<p>None of them combine local-first infrastructure, real-time orchestration, risk enforcement, and the ability to run both autonomous agents and discretionary positions from one system. Most force you to pick a lane — quant or manual, cloud or local, broker-dependent or DIY.</p>
 <p>Glasshouse is designed to grow with you. Start with smart triggers and manual trade plans, and move into fully automated agents as your confidence and skills develop. No one starts as a quant — and you shouldn't need to become one to manage your investment bets.</p>
-<p>Even the most systematic investor will itch to place discretionary bets. Jim Simons — while building the most successful quantitative fund in history — overrode his own models to buy gold on instinct. Glasshouse can run both systematic or discretionary approaches side by side.</p>
+<p>Even systematic investors feel the urge to make discretionary bets. Jim Simons, while building one of history's most successful quantitative funds, overrode his own models to buy gold on instinct and lost money. Glasshouse lets you run systematic and discretionary approaches side by side, with automated guardrails to limit downside.</p>
 <p>Here are the closest alternatives:</p>
 <table>
   <thead>
@@ -61,7 +63,7 @@ const faqs = [
   {
     question: 'Why does this exist?',
     answer: `<p>I spent nearly two decades working in the financial software industry. Ironically, I was terrible at managing my own finances and investments. Based in Sydney, holding a mix of US employee and personal equities, I was setting alarms for overnight sessions, using disconnected tools, being mentally drained by the continuous decision loop — buy more, sell, or let it run. I needed a system that could watch my positions while I slept and take the weight off while I was awake. Nothing out there brought it all together in an accessible way.</p>
-<p>Sadly, AI coding assistants weren't a thing when I started. Every piece of Glasshouse's architecture has been painfully designed and written by hand. In fairness, I'm not convinced you can vibe code a reliable real-time, multi-client asyncio Python platform that wrangles socket-based broker APIs designed in the 90s.
+<p>Sadly, AI coding assistants weren't a thing when I started. Every piece of Glasshouse's core architecture has been carefully handcrafted. In fairness, I don't think you can vibe code a reliable real-time, event-driven asynchronous platform on top of socket-based broker APIs designed in the 90s.
 </p>
 <p>By the time the platform matured, local AI models became viable on a single machine, and large models could leverage local tools through MCP connectors — exactly the kind of infrastructure Glasshouse was already built to support. What started as a personal tool evolved into a fully fledged platform.</p>`,
   },
@@ -105,6 +107,14 @@ const faqs = [
 
   .faq-answer :global(p:first-child) {
     margin-top: 0;
+  }
+
+  .faq-answer :global(code) {
+    padding: 0.15rem 0.4rem;
+    border-radius: 0.25rem;
+    background: rgba(255, 255, 255, 0.08);
+    font-size: 0.9em;
+    color: var(--color-accent);
   }
 
   .faq-answer :global(table) {
