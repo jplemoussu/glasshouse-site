@@ -14,7 +14,7 @@ const tools = [
         Plug in AI control
       </h2>
       <p class="mt-6 leading-relaxed text-text-secondary">
-        Glasshouse exposes live platform state — positions, triggers, agents — as MCP tools. Connect Claude, ChatGPT, or any local model and create reusable skills: "check my portfolio, flag anything down more than 5%, tighten stops on those positions." One prompt, repeatable on demand.
+        Glasshouse exposes live platform state — positions, triggers, agents — as MCP tools. Connect Claude, ChatGPT, or any local model and create reusable skills: <code>check my portfolio, flag anything down more than 10% and add a 1.5x ATR stop.</code> One prompt, repeatable on demand.
       </p>
     </div>
 
@@ -32,3 +32,13 @@ const tools = [
     </div>
   </div>
 </section>
+
+<style>
+  p :global(code) {
+    padding: 0.15rem 0.4rem;
+    border-radius: 0.25rem;
+    background: rgba(255, 255, 255, 0.08);
+    font-size: 0.9em;
+    color: var(--color-accent);
+  }
+</style>
